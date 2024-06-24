@@ -1,0 +1,25 @@
+//Instrucciones en el shell del sistema
+//Instalar Django y django-allauth
+pip install django django-allauth
+
+//Crear el Proyecto 
+django-admin startproject task_management
+cd task_management
+
+//Crear la Aplicación de Usuarios
+python manage.py startapp users
+
+//Se deben modificar los archivos creados, puestos en la carpeta task_management
+//
+//Luego, Instalar PyJWT para manejar archivos json
+pip install PyJWT
+
+//Aplicar las Migraciones
+python manage.py migrate
+
+//Crear un Superusuario
+python manage.py createsuperuser
+
+//Iniciar el servidor
+python manage.py runserver
+
