@@ -1,0 +1,48 @@
+Paso 1: Abrir Google Developers Console:
+        Ve a Google Developers Console.
+        Inicia sesión con tu cuenta de Google.
+
+    Crear un Nuevo Proyecto:
+        Haz clic en el selector de proyecto en la parte superior.
+        Haz clic en "Nuevo proyecto".
+        Dale un nombre al proyecto y haz clic en "Crear".
+
+    Habilitar la API de Google+:
+        En la barra de búsqueda, escribe "Google+ API".
+        Selecciona "Google+ API" y haz clic en "Habilitar".
+
+    Configurar la Pantalla de Consentimiento OAuth:
+        Ve a "Credenciales" en el menú de la izquierda.
+        Haz clic en "Pantalla de consentimiento OAuth".
+        Selecciona "Externo" y haz clic en "Crear".
+        Completa los campos requeridos (nombre de la aplicación, correo electrónico de soporte, etc.).
+        Guarda los cambios.
+
+    Crear Credenciales OAuth 2.0:
+        Ve a "Credenciales".
+        Haz clic en "Crear credenciales" y selecciona "ID de cliente de OAuth".
+        Selecciona "Aplicación web".
+        Completa los campos requeridos (nombre, URI de redirección autorizados, etc.).
+        Usa http://localhost:8000/accounts/google/login/callback/ como URI de redirección.
+
+    Obtener Client ID y Client Secret:
+        Después de crear las credenciales, copia el Client ID y el Client Secret.
+
+Paso 2: Añadir la Aplicación Social en Django Admin
+
+    Volver al Admin de Django:
+        Ve a http://localhost:8000/admin/.
+
+    Añadir una Nueva Aplicación Social:
+        Ve a "Social applications".
+        Haz clic en "Add social application".
+        Selecciona "Google" como proveedor.
+        Introduce el Client ID y el Client Secret obtenidos de Google Developers Console.
+        Asigna el sitio (puede ser example.com o localhost dependiendo de tu configuración).
+        Guarda los cambios.
+
+Paso 3: Probar la Autenticación con Google
+
+    Acceder a http://localhost:8000/accounts/login/.
+    Seleccionar "Sign in with Google".
+    Autenticarte con tu cuenta de Google
