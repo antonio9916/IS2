@@ -3,28 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Mi Sitio{% endblock %}</title>
-    {% load static %}  <!-- Añadir esta línea -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>{% block title %}Task Management{% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <header>
-        <h1>Bienvenido a Mi Aplicación</h1>
-        {% if user.is_authenticated %}
-            <p>Hola, {{ user.username }}. <a href="{% url 'logout' %}">Cerrar sesión</a></p>
-        {% else %}
-            <p><a href="{% url 'signup' %}">Registrarse</a> | <a href="{% url 'login' %}">Iniciar sesión</a></p>
-        {% endif %}
-        <nav>
-            <ul>
-                <li><a href="{% url 'home' %}">Inicio</a></li>
-                <li><a href="{% url 'task_list' %}">Lista de Tareas</a></li>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'home' %}">Task Management</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'task_list' %}">Task List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'signup' %}">Signup</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    </li>
+                {% endif %}
             </ul>
-        </nav>
-    </header>
-    <main>
+        </div>
+    </nav>
+    <div class="container mt-4">
         {% block content %}
         {% endblock %}
-    </main>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>

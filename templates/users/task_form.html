@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %}Crear/Editar Tarea{% endblock %}
+{% block title %}{% if form.instance.pk %}Edit Task{% else %}Create Task{% endif %}{% endblock %}
 
 {% block content %}
-    <h2>{% if task %}Editar{% else %}Crear{% endif %} Tarea</h2>
+    <h2>{% if form.instance.pk %}Edit Task{% else %}Create Task{% endif %}</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">{% if task %}Guardar Cambios{% else %}Crear Tarea{% endif %}</button>
+        <button type="submit" class="btn btn-success">Save</button>
     </form>
 {% endblock %}
