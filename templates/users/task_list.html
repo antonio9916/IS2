@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Tareas{% endblock %}
+
+{% block content %}
+    <h2>Lista de Tareas</h2>
+    <ul>
+        {% for task in tasks %}
+            <li>
+                <a href="{% url 'task_detail' task.pk %}">{{ task.title }}</a>
+                {% if task.completed %}
+                    <span>(Completada)</span>
+                {% endif %}
+                {% if task.assigned_to %}
+                    <span> - Asignada a: {{ task.assigned_to.username }}</span>
+                {% endif %}
+                <a href="{% url 'task_edit' task.pk %}">Editar</a>
+                <a href="{% url 'task_delete' task.pk %}">Eliminar</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'task_create' %}">Crear Nueva Tarea</a>
+{% endblock %}

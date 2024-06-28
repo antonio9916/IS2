@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Crear/Editar Tarea{% endblock %}
+
+{% block content %}
+    <h2>{% if task %}Editar{% else %}Crear{% endif %} Tarea</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">{% if task %}Guardar Cambios{% else %}Crear Tarea{% endif %}</button>
+    </form>
+{% endblock %}

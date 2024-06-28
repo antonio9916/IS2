@@ -1,0 +1,7 @@
+<h1>Bienvenido a la Página de Inicio</h1>
+{% if user.is_authenticated %}
+    <p>Hola, {{ user.username }}. <a href="{% url 'logout' %}">Cerrar sesión</a></p>
+    <p><a href="{% url 'task_list' %}">Ver Lista de Tareas</a></p> <!-- Enlace a la lista de tareas -->
+{% else %}
+    <p><a href="{% url 'signup' %}">Registrarse</a> | <a href="{% url 'login' %}">Iniciar sesión</a></p>
+{% endif %}
