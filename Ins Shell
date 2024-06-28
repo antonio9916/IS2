@@ -14,7 +14,7 @@ python manage.py startapp users
 //Luego, Instalar PyJWT para manejar archivos json
 pip install PyJWT
 
-//Aplicar las Migraciones
+//Aplicar las Migraciones al final de las modificaciones
 python manage.py migrate
 
 //Crear un Superusuario
