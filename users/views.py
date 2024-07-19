@@ -4,11 +4,41 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from allauth.account.auth_backends import AuthenticationBackend
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Task
-from .forms import TaskForm
+from .models import Task, Workspace, Board, List
+from .forms import TaskForm, WorkspaceForm, BoardForm, ListForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
+class WorkspaceListView(ListView):
+    model = Workspace
+    template_name = 'users/workspace_list.html'
+    context_object_name = 'workspaces'
+
+class WorkspaceDetailView(DetailView):
+    model = Workspace
+    template_name = 'users/workspace_detail.html'
+
+class WorkspaceCreateView(CreateView):
+    model = Workspace
+    form_class = WorkspaceForm
+    template_name = 'users/workspace_form.html'
+    success_url = reverse_lazy('workspace_list')
+
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super().form_valid(form)
+
+class WorkspaceUpdateView(UpdateView):
+    model = Workspace
+    form_class = WorkspaceForm
+    template_name = 'users/workspace_form.html'
+    success_url = reverse_lazy('workspace_list')
+
+class WorkspaceDeleteView(DeleteView):
+    model = Workspace
+    template_name = 'users/workspace_confirm_delete.html'
+    success_url = reverse_lazy('workspace_list')
+    
 @method_decorator(login_required, name='dispatch')
 class TaskListView(ListView):
     model = Task
@@ -101,3 +131,41 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect('home')
+
+class BoardListView(ListView):
+    model = Board
+    template_name = 'users/board_list.html'
+
+class BoardCreateView(CreateView):
+    model = Board
+    form_class = BoardForm
+    template_name = 'users/board_form.html'
+    success_url = reverse_lazy('board_list')
+
+class BoardUpdateView(UpdateView):
+    model = Board
+    form_class = BoardForm
+    template_name = 'users/board_form.html'
+    success_url = reverse_lazy('board_list')
+
+class BoardDeleteView(DeleteView):
+    model = Board
+    template_name = 'users/board_confirm_delete.html'
+    success_url = reverse_lazy('board_list')
+
+class ListCreateView(CreateView):
+    model = List
+    form_class = ListForm
+    template_name = 'users/list_form.html'
+    success_url = reverse_lazy('board_list')
+
+class ListUpdateView(UpdateView):
+    model = List
+    form_class = ListForm
+    template_name = 'users/list_form.html'
+    success_url = reverse_lazy('board_list')
+
+class ListDeleteView(DeleteView):
+    model = List
+    template_name = 'users/list_confirm_delete.html'
+    success_url = reverse_lazy('board_list')

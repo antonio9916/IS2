@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Workspaces</h2>
+  <a href="{% url 'workspace_create' %}">Create new workspace</a>
+  <ul>
+    {% for workspace in workspaces %}
+      <li>
+        <a href="{% url 'workspace_detail' workspace.pk %}">{{ workspace.name }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

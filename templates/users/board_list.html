@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Boards</h2>
+  <a href="{% url 'board_create' %}">Create Board</a>
+  <ul>
+    {% for board in object_list %}
+      <li>
+        {{ board.name }} - {{ board.workspace.name }}
+        <a href="{% url 'board_update' board.pk %}">Edit</a>
+        <a href="{% url 'board_delete' board.pk %}">Delete</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

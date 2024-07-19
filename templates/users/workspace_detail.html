@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}{{ workspace.name }}{% endblock %}
+
+{% block content %}
+  <h1>{{ workspace.name }}</h1>
+  <p>{{ workspace.description }}</p>
+  <a href="{% url 'workspace_edit' workspace.pk %}">Edit</a>
+  <a href="{% url 'workspace_delete' workspace.pk %}">Delete</a>
+{% endblock %}
